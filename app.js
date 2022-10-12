@@ -2,6 +2,8 @@ const sentence =
 	'Plat and play the the, not bad 55 ?Greek, The Not so good and play';
 
 const frequencies = {};
+const frequenciesArray = [];
+
 const str = sentence
 	.toLowerCase()
 	.replace(/[^\w -]/g, '')
@@ -13,4 +15,19 @@ for (const word of str) {
 	}
 }
 
-console.log(frequencies);
+for (let key in frequencies) {
+	frequenciesArray.push({
+		word: key,
+		count: frequencies[key],
+	});
+}
+
+frequenciesArray.sort((a, b) => b.count - a.count);
+
+for (let i = 0; i < 3; i++) {
+	console.log(
+		`${i}. ${frequenciesArray[i].word.toUpperCase()}: was counted ${
+			frequenciesArray[i].count
+		}`
+	);
+}
